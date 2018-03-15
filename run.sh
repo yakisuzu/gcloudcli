@@ -18,7 +18,11 @@ docker build --no-cache=$TMP_NO_CACHE -t ${SERVICE_NAME}:${IMAGE_TAG} .
 
 echo
 echo [docker run start]
-MOUNT_HOST_DIR="/$USERPROFILE"
+if [ "$HOME" != "" ]; then
+  MOUNT_HOST_DIR="/$HOME"
+else
+  MOUNT_HOST_DIR="/$USERPROFILE"
+fi
 MOUNT_DOCKER_DIR="/mnt/hosthome"
 TMP_MOUNT="${MOUNT_HOST_DIR}:${MOUNT_DOCKER_DIR}"
 echo run image=${SERVICE_NAME}:${IMAGE_TAG} mount=$TMP_MOUNT

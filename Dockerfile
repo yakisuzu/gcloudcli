@@ -1,7 +1,9 @@
 FROM google/cloud-sdk:latest
 
 RUN set -x && apt-get -y update && apt-get -y upgrade
+ADD ./Dockerrc.sh /Dockerrc.sh
 
-WORKDIR /root
-ENTRYPOINT ["/bin/bash"]
-CMD ["--login", "-i"]
+ENTRYPOINT ["/Dockerrc.sh"]
+
+# ENTRYPOINT ["/bin/bash"]
+# CMD ["--login", "-i"]
